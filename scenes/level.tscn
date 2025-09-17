@@ -1,22 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://byrl2mm5r7s8l"]
+[gd_scene load_steps=9 format=3 uid="uid://byrl2mm5r7s8l"]
 
 [ext_resource type="Texture2D" uid="uid://cogsqjhu2a3r3" path="res://assets/background.png" id="1_2q6dc"]
+[ext_resource type="Script" uid="uid://bi70nfgipdohg" path="res://scripts/level.gd" id="1_2r41h"]
 [ext_resource type="PackedScene" uid="uid://8o5hvjc1851y" path="res://scenes/player_1.tscn" id="1_w8frs"]
-[ext_resource type="Texture2D" uid="uid://cyu8kiaa48e5" path="res://assets/ball.png" id="2_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://dr3us8222ttgi" path="res://scenes/player_2.tscn" id="3_mx8sn"]
 [ext_resource type="Script" uid="uid://6ou3ib0un36k" path="res://scripts/player_1.gd" id="3_ppgk2"]
+[ext_resource type="PackedScene" uid="uid://d0giqrc212v0h" path="res://scenes/ball.tscn" id="5_ppgk2"]
+[ext_resource type="Script" uid="uid://quww5ofyr2vy" path="res://scripts/player_2.gd" id="6_klq6b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ppgk2"]
-size = Vector2(320, 20)
+size = Vector2(408, 20)
 
-[node name="level" type="Area2D"]
+[node name="level" type="Node2D"]
+script = ExtResource("1_2r41h")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("1_2q6dc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 100)
-shape = SubResource("RectangleShape2D_ppgk2")
 
 [node name="player1" parent="." instance=ExtResource("1_w8frs")]
 position = Vector2(-150, 0)
@@ -24,8 +23,35 @@ script = ExtResource("3_ppgk2")
 
 [node name="player2" parent="." instance=ExtResource("3_mx8sn")]
 position = Vector2(150, 0)
+scale = Vector2(1.17114, 0.884214)
+script = ExtResource("6_klq6b")
 
-[node name="Ball" type="Sprite2D" parent="."]
-texture = ExtResource("2_w7c3h")
+[node name="Ball" parent="." instance=ExtResource("5_ppgk2")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="bottom_wall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom_wall"]
+position = Vector2(0, 110)
+shape = SubResource("RectangleShape2D_ppgk2")
+
+[node name="right_wall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right_wall"]
+position = Vector2(200, 0)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ppgk2")
+
+[node name="left_wall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left_wall"]
+position = Vector2(-200, 0)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ppgk2")
+
+[node name="top_wall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="top_wall"]
+position = Vector2(0, -110)
+shape = SubResource("RectangleShape2D_ppgk2")

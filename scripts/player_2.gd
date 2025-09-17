@@ -5,10 +5,10 @@ extends CharacterBody2D
 func _physics_process(delta: float) -> void:
 	var dir := 0
 	
-	if Input.is_action_pressed("p1_up"):
+	if Input.is_action_pressed("p2_up"):
 		dir -= 1
-	if Input.is_action_pressed("p1_down"):
+	if Input.is_action_pressed("p2_down"):
 		dir += 1
-	
+		
 	velocity = Vector2(0, dir * speed)
 	move_and_slide()
