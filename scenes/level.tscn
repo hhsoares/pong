@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://byrl2mm5r7s8l"]
+
+[ext_resource type="Texture2D" uid="uid://cogsqjhu2a3r3" path="res://assets/background.png" id="1_2q6dc"]
+[ext_resource type="PackedScene" uid="uid://8o5hvjc1851y" path="res://scenes/player_1.tscn" id="1_w8frs"]
+[ext_resource type="Texture2D" uid="uid://cyu8kiaa48e5" path="res://assets/ball.png" id="2_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://dr3us8222ttgi" path="res://scenes/player_2.tscn" id="3_mx8sn"]
+[ext_resource type="Script" uid="uid://6ou3ib0un36k" path="res://scripts/player_1.gd" id="3_ppgk2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ppgk2"]
+size = Vector2(320, 20)
+
+[node name="level" type="Area2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_2q6dc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 100)
+shape = SubResource("RectangleShape2D_ppgk2")
+
+[node name="player1" parent="." instance=ExtResource("1_w8frs")]
+position = Vector2(-150, 0)
+script = ExtResource("3_ppgk2")
+
+[node name="player2" parent="." instance=ExtResource("3_mx8sn")]
+position = Vector2(150, 0)
+
+[node name="Ball" type="Sprite2D" parent="."]
+texture = ExtResource("2_w7c3h")
+
+[node name="Camera2D" type="Camera2D" parent="."]
