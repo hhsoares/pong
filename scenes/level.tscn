@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://byrl2mm5r7s8l"]
+[gd_scene load_steps=13 format=3 uid="uid://byrl2mm5r7s8l"]
 
 [ext_resource type="Script" uid="uid://bi70nfgipdohg" path="res://scripts/level.gd" id="1_2r41h"]
 [ext_resource type="PackedScene" uid="uid://8o5hvjc1851y" path="res://scenes/player_1.tscn" id="1_w8frs"]
@@ -13,14 +13,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ppgk2"]
 size = Vector2(327, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b121j"]
-size = Vector2(14, 240)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_klq6b"]
-size = Vector2(13.5, 240)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8c41q"]
-size = Vector2(17, 239)
+size = Vector2(86, 476)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_olg7q"]
+size = Vector2(87, 473)
 
 [node name="level" type="Node2D"]
 script = ExtResource("1_2r41h")
@@ -53,12 +50,8 @@ shape = SubResource("RectangleShape2D_ppgk2")
 script = ExtResource("8_b121j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/right_wall"]
-position = Vector2(166, 0)
-shape = SubResource("RectangleShape2D_b121j")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(166, 0)
-shape = SubResource("RectangleShape2D_klq6b")
+position = Vector2(206, -10)
+shape = SubResource("RectangleShape2D_8c41q")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 
@@ -66,12 +59,8 @@ shape = SubResource("RectangleShape2D_klq6b")
 script = ExtResource("9_8c41q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2/left_wall"]
-position = Vector2(-166, 0)
-shape = SubResource("RectangleShape2D_klq6b")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(-171, 1)
-shape = SubResource("RectangleShape2D_8c41q")
+position = Vector2(-210, 0)
+shape = SubResource("RectangleShape2D_olg7q")
 
 [node name="top_wall" type="StaticBody2D" parent="."]
 
@@ -81,6 +70,7 @@ shape = SubResource("RectangleShape2D_ppgk2")
 
 [node name="p1_Label" type="Label" parent="."]
 unique_name_in_owner = true
+texture_filter = 1
 offset_left = -80.0
 offset_top = -90.0
 offset_right = -40.0
@@ -90,9 +80,10 @@ horizontal_alignment = 1
 
 [node name="p2_Label" type="Label" parent="."]
 unique_name_in_owner = true
-offset_left = 40.0
+texture_filter = 1
+offset_left = 38.0
 offset_top = -90.0
-offset_right = 80.0
+offset_right = 78.0
 offset_bottom = -54.0
 text = "0"
 horizontal_alignment = 1

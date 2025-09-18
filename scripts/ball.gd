@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 150.0
+var speed = 250.0
 
 var p1_score = 0
 var p2_score = 0
@@ -29,13 +29,23 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 func set_score_p1(new_p1_score: int) -> void:
 	p1_score =  new_p1_score
 	p1_score_label.text = str(p1_score)
-	$".".hide()
-	await get_tree().create_timer(1.0).timeout
-	get_tree().reload_current_scene()
+	reset_ball_p1()
 
 func set_score_p2(new_p2_score: int) -> void:
 	p2_score =  new_p2_score
 	p2_score_label.text = str(p2_score)
-	$".".hide()
+	reset_ball_p2()
+
+func reset_ball_p1() -> void:
+	hide()
 	await get_tree().create_timer(1.0).timeout
-	get_tree().reload_current_scene()
+	position = Vector2(0, randf_range(-90, 90))
+	velocity = Vector2(-200, -200).normalized() * speed
+	show()
+
+func reset_ball_p2() -> void:
+	hide()
+	await get_tree().create_timer(1.0).timeout
+	position = Vector2(0, randf_range(-90, 90))
+	velocity = Vector2(200, 200).normalized() * speed
+	show()
