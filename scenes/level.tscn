@@ -23,6 +23,7 @@ size = Vector2(87, 473)
 script = ExtResource("1_2r41h")
 
 [node name="Background" type="Sprite2D" parent="."]
+texture_filter = 1
 texture = ExtResource("2_klq6b")
 
 [node name="player1" parent="." instance=ExtResource("1_w8frs")]

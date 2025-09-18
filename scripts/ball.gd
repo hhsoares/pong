@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 250.0
+var speed = 225.0
 
 var p1_score = 0
 var p2_score = 0
