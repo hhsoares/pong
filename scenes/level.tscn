@@ -1,21 +1,32 @@
-[gd_scene load_steps=9 format=3 uid="uid://byrl2mm5r7s8l"]
+[gd_scene load_steps=14 format=3 uid="uid://byrl2mm5r7s8l"]
 
-[ext_resource type="Texture2D" uid="uid://cogsqjhu2a3r3" path="res://assets/background.png" id="1_2q6dc"]
 [ext_resource type="Script" uid="uid://bi70nfgipdohg" path="res://scripts/level.gd" id="1_2r41h"]
 [ext_resource type="PackedScene" uid="uid://8o5hvjc1851y" path="res://scenes/player_1.tscn" id="1_w8frs"]
+[ext_resource type="Texture2D" uid="uid://ys0wj8aa2doq" path="res://assets/backgroundv2.png" id="2_klq6b"]
 [ext_resource type="PackedScene" uid="uid://dr3us8222ttgi" path="res://scenes/player_2.tscn" id="3_mx8sn"]
 [ext_resource type="Script" uid="uid://6ou3ib0un36k" path="res://scripts/player_1.gd" id="3_ppgk2"]
 [ext_resource type="PackedScene" uid="uid://d0giqrc212v0h" path="res://scenes/ball.tscn" id="5_ppgk2"]
 [ext_resource type="Script" uid="uid://quww5ofyr2vy" path="res://scripts/player_2.gd" id="6_klq6b"]
+[ext_resource type="Script" uid="uid://cm5hqc2v8gob4" path="res://scripts/right_wall.gd" id="8_b121j"]
+[ext_resource type="Script" uid="uid://kjwcsey7axs6" path="res://scripts/left_wall.gd" id="9_8c41q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ppgk2"]
-size = Vector2(408, 20)
+size = Vector2(327, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b121j"]
+size = Vector2(14, 240)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_klq6b"]
+size = Vector2(13.5, 240)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8c41q"]
+size = Vector2(17, 239)
 
 [node name="level" type="Node2D"]
 script = ExtResource("1_2r41h")
 
 [node name="Background" type="Sprite2D" parent="."]
-texture = ExtResource("1_2q6dc")
+texture = ExtResource("2_klq6b")
 
 [node name="player1" parent="." instance=ExtResource("1_w8frs")]
 position = Vector2(-150, 0)
@@ -33,25 +44,58 @@ script = ExtResource("6_klq6b")
 [node name="bottom_wall" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bottom_wall"]
-position = Vector2(0, 110)
+position = Vector2(-1.5, 110)
 shape = SubResource("RectangleShape2D_ppgk2")
 
-[node name="right_wall" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="right_wall"]
-position = Vector2(200, 0)
-rotation = 1.5708
-shape = SubResource("RectangleShape2D_ppgk2")
+[node name="right_wall" type="Area2D" parent="StaticBody2D" groups=["right_wall"]]
+script = ExtResource("8_b121j")
 
-[node name="left_wall" type="StaticBody2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/right_wall"]
+position = Vector2(166, 0)
+shape = SubResource("RectangleShape2D_b121j")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="left_wall"]
-position = Vector2(-200, 0)
-rotation = 1.5708
-shape = SubResource("RectangleShape2D_ppgk2")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(166, 0)
+shape = SubResource("RectangleShape2D_klq6b")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="left_wall" type="Area2D" parent="StaticBody2D2" groups=["left_wall"]]
+script = ExtResource("9_8c41q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2/left_wall"]
+position = Vector2(-166, 0)
+shape = SubResource("RectangleShape2D_klq6b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-171, 1)
+shape = SubResource("RectangleShape2D_8c41q")
 
 [node name="top_wall" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="top_wall"]
-position = Vector2(0, -110)
+position = Vector2(-1, -110)
 shape = SubResource("RectangleShape2D_ppgk2")
+
+[node name="p1_Label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -80.0
+offset_top = -90.0
+offset_right = -40.0
+offset_bottom = -54.0
+text = "0"
+horizontal_alignment = 1
+
+[node name="p2_Label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 40.0
+offset_top = -90.0
+offset_right = 80.0
+offset_bottom = -54.0
+text = "0"
+horizontal_alignment = 1
+
+[connection signal="area_entered" from="StaticBody2D/right_wall" to="StaticBody2D/right_wall" method="_on_area_entered"]
+[connection signal="area_entered" from="StaticBody2D2/left_wall" to="StaticBody2D2/left_wall" method="_on_area_entered"]

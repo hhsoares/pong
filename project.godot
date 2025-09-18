@@ -22,6 +22,10 @@ window/size/viewport_height=200
 window/size/mode=2
 window/stretch/mode="viewport"
 
+[gui]
+
+theme/custom_font="uid://cfuesqy1kqts5"
+
 [input]
 
 p1_up={
