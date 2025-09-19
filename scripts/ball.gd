@@ -9,6 +9,7 @@ var p2_score = 0
 @onready var p2_score_label = %p2_Label
 
 func _ready():
+	await get_tree().create_timer(1.5).timeout
 	velocity = Vector2(-200, -200).normalized() * speed
 
 func _physics_process(delta):
