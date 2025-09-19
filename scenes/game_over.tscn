@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4mavocbyj83b"]
+
+[ext_resource type="Script" uid="uid://6fstx1djuluc" path="res://scripts/game_over.gd" id="1_wqhvx"]
+[ext_resource type="Texture2D" uid="uid://cogsqjhu2a3r3" path="res://assets/background.png" id="1_xeevv"]
+
+[node name="game_over" type="Node2D"]
+script = ExtResource("1_wqhvx")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_xeevv")
+
+[node name="win" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -160.0
+offset_top = -60.0
+offset_right = 160.0
+offset_bottom = -21.0
+text = "PLAYER  WINS"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+offset_left = -160.0
+offset_right = 160.0
+offset_bottom = 35.3333
+text = "PRESS  R  TO  PLAY  AGAIN"
+horizontal_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
