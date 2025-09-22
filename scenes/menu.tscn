@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckb1f88ui4to1"]
+
+[ext_resource type="Script" uid="uid://gx15rn35qsea" path="res://scripts/menu.gd" id="1_vjb58"]
+[ext_resource type="Texture2D" uid="uid://cogsqjhu2a3r3" path="res://assets/background.png" id="1_yqeox"]
+
+[node name="menu" type="Node2D"]
+script = ExtResource("1_vjb58")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_yqeox")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="title" type="Label" parent="."]
+offset_left = -160.0
+offset_top = -66.0
+offset_right = 160.0
+offset_bottom = -30.666668
+text = "PONG"
+horizontal_alignment = 1
+
+[node name="button manager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="play" type="Button" parent="button manager"]
+layout_mode = 0
+offset_left = -160.0
+offset_top = 16.0
+offset_right = 160.0
+offset_bottom = 51.0
+theme_override_font_sizes/font_size = 12
+text = "PLAY"
+flat = true
+
+[node name="exit" type="Button" parent="button manager"]
+layout_mode = 0
+offset_left = -160.0
+offset_top = 40.0
+offset_right = 160.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 12
+text = "EXIT"
+flat = true
+
+[connection signal="pressed" from="button manager/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="button manager/exit" to="." method="_on_exit_pressed"]

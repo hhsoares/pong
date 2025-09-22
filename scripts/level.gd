@@ -9,6 +9,9 @@ func _process(delta) -> void:
 	if Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
 
+	if Input.is_action_just_pressed("menu"):
+		get_tree().change_scene_to_file("res://scenes/menu.tscn")
+
 	if ball.p1_score >= 5 or ball.p2_score >= 5:
 		win_check()
 		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
