@@ -19,31 +19,37 @@ offset_bottom = -30.666668
 text = "PONG"
 horizontal_alignment = 1
 
-[node name="button manager" type="Control" parent="."]
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="play" type="Button" parent="button manager"]
-layout_mode = 0
-offset_left = -160.0
-offset_top = 16.0
-offset_right = 160.0
-offset_bottom = 51.0
+[node name="button manager" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -20.0
+offset_right = 50.0
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="play" type="Button" parent="Control/button manager"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "PLAY"
 flat = true
 
-[node name="exit" type="Button" parent="button manager"]
-layout_mode = 0
-offset_left = -160.0
-offset_top = 40.0
-offset_right = 160.0
-offset_bottom = 75.0
+[node name="exit" type="Button" parent="Control/button manager"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "EXIT"
 flat = true
 
-[connection signal="pressed" from="button manager/play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="button manager/exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Control/button manager/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Control/button manager/exit" to="." method="_on_exit_pressed"]
